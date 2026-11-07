@@ -1,0 +1,12 @@
+{
+  "name":"helion-atlas-electrico",
+  "version":"1.5.0",
+  "private":true,
+  "type":"module",
+  "description":"Atlas educativo estático. Sin publicación automática.",
+  "scripts":{
+    "test":"node tests/smoke.mjs && node tests/geo-map.mjs && node tests/division-map.mjs && node tests/audit-v1.5.mjs",
+    "test:browser":"node tests/browser.mjs"
+  },
+  "devDependencies":{"playwright":"1.65.0","@axe-core/playwright":"4.14.0"}
+}
