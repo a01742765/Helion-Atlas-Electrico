@@ -1,0 +1,70 @@
+/* HELION v1.6 · visual layer. Brand tokens and Inter remain defined in styles.css. */
+:root{--visual-shadow:0 24px 65px rgba(6,27,49,.13);--visual-ring:0 0 0 1px rgba(24,183,176,.28),0 18px 42px rgba(6,27,49,.12)}
+body{background:linear-gradient(180deg,#fff 0%,#f5f8fb 50%,#fff 100%)}
+.site-header{border-bottom:1px solid rgba(24,183,176,.17)}
+.hero{isolation:isolate;box-shadow:0 34px 85px rgba(6,27,49,.26)}
+.hero::before{content:"";position:absolute;inset:-45%;z-index:0;pointer-events:none;background:conic-gradient(from 90deg,transparent 0deg,rgba(24,183,176,.13) 65deg,transparent 120deg,rgba(245,180,0,.12) 215deg,transparent 270deg);animation:hero-light 24s linear infinite}
+.hero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 65% 47%,rgba(245,180,0,.15),transparent 29%);animation:hero-glow 7s ease-in-out infinite alternate}
+.hero-copy,.hero-visual{position:relative;z-index:1}
+.hero-copy>*{animation:hero-enter .8s both}.hero-copy>*:nth-child(2){animation-delay:.08s}.hero-copy>*:nth-child(3){animation-delay:.16s}.hero-copy>*:nth-child(4){animation-delay:.24s}
+.sun-core{animation:core-glow 5s ease-in-out infinite alternate}.sun-core svg{filter:drop-shadow(0 0 13px rgba(245,180,0,.6))}
+.float-chip{animation:chip-rise .8s both}.chip-b{animation-delay:.16s}.chip-c{animation-delay:.28s}
+.stats-band{position:relative;z-index:2}.stat strong{transition:color .25s}.stat:hover strong{color:var(--deep)}
+.section{position:relative}.section-heading h2{max-width:16ch}.panel,.family-card,.kpi,.finding,.map-detail,.timeline-detail,.explain-box{transition:transform .32s ease,box-shadow .32s ease,border-color .32s ease}
+.panel:hover,.family-card:hover,.kpi:hover,.finding:hover{box-shadow:var(--visual-shadow);border-color:rgba(24,183,176,.36)}
+.panel:hover,.kpi:hover,.finding:hover{transform:translateY(-3px)}
+.btn,.pill,.text-button,.source-link{transition:transform .2s ease,box-shadow .2s ease,background-color .2s ease,color .2s ease}
+.btn:hover,.pill:hover{transform:translateY(-2px)}
+.btn:active,.pill:active{transform:translateY(0)}
+.hero-actions .btn-gold{box-shadow:0 10px 35px rgba(245,180,0,.22)}
+.hero-actions .btn-gold:hover{box-shadow:0 15px 42px rgba(245,180,0,.36)}
+.panel-top{position:relative}.panel-top::after{content:"";position:absolute;left:0;bottom:-12px;width:42px;height:2px;border-radius:2px;background:var(--teal);opacity:.75}
+.panel-dark .panel-top::after{background:var(--gold)}
+.family-icon,.pill-icon{box-shadow:inset 0 0 0 1px rgba(10,58,102,.08),0 8px 20px rgba(10,58,102,.08)}
+.map-block{box-shadow:0 22px 50px rgba(6,27,49,.16)}
+.map-detail{box-shadow:0 22px 45px rgba(6,27,49,.12)}
+.map-detail h3,.map-detail dl,.map-detail p,.plant-detail-art,.plant-detail-kpi{animation:detail-enter .35s ease both}
+.map-detail dl{animation-delay:.06s}.map-detail p{animation-delay:.1s}
+.plant-pin,.division-pin,#map-transmission .map-pin{transform-box:fill-box;transform-origin:center;transition:filter .25s ease,transform .25s ease,opacity .25s ease}
+.plant-pin:hover,.division-pin:hover,#map-transmission .map-pin:hover{filter:drop-shadow(0 0 11px rgba(245,180,0,.75));transform:scale(1.11)}
+.plant-pin.active,.division-pin.active,#map-transmission .map-pin.selected{filter:drop-shadow(0 0 12px rgba(245,180,0,.8))}
+.plant-option,.division-option,#map-transmission .transmission-directory button{transition:background-color .22s ease,border-color .22s ease,transform .22s ease,box-shadow .22s ease}
+.plant-option:hover,.division-option:hover,#map-transmission .transmission-directory button:hover{transform:translateY(-2px);box-shadow:var(--visual-ring)}
+.plant-artwork{display:block;width:100%;height:auto;overflow:hidden}
+.plant-artwork .art-flow{animation:flow-dashes 3s linear infinite}
+.plant-artwork .art-rotor{transform-box:fill-box;transform-origin:center;animation:rotor-turn 7s linear infinite}
+.plant-artwork .art-sun{animation:art-glow 3s ease-in-out infinite alternate}
+.plant-artwork .art-rays,.plant-artwork .art-steam{animation:art-drift 2.6s ease-in-out infinite alternate}
+.simulator{border-color:rgba(24,183,176,.3);box-shadow:0 24px 60px rgba(6,27,49,.1)}
+.simulator .output-cards>div{position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s}
+.simulator .output-cards>div::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--teal)}
+.simulator .output-cards>div:nth-child(2)::before{background:var(--gold)}
+.simulator .output-cards>div:hover{transform:translateY(-3px);box-shadow:var(--visual-ring)}
+.simulator input[type=range]{accent-color:var(--teal)}
+#chart-sim-trans{background:linear-gradient(180deg,rgba(24,183,176,.07),transparent);border-radius:14px}
+#chart-sim-trans svg{animation:chart-enter .38s ease both}
+#chart-sim-trans polyline{stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 2px 4px rgba(24,183,176,.35))}
+.transformer-drawing{padding:6px;border-radius:20px;background:linear-gradient(135deg,rgba(24,183,176,.14),rgba(245,180,0,.1))}
+.transformer-drawing svg{max-height:none}
+.transformer-art .transformer-flux{animation:flow-dashes var(--flux-duration,2s) linear infinite;filter:drop-shadow(0 0 5px rgba(245,180,0,.7))}
+.transformer-art .transformer-pulse{animation:input-pulse var(--flux-duration,2s) ease-in-out infinite}
+.transformer-art .transformer-pulse-out{animation-delay:calc(var(--flux-duration,2s) / -2)}
+.chart:not(.live-chart):not(.transformer-drawing) svg{animation:chart-enter .48s ease both}
+.chart svg rect,.chart svg circle,.chart svg polyline{transition:opacity .4s ease,filter .4s ease}
+.chart:hover svg rect,.chart:hover svg circle{filter:drop-shadow(0 4px 6px rgba(10,58,102,.16))}
+.finding{position:relative;overflow:hidden}.finding::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--teal),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .3s}.finding:hover::before{transform:scaleX(1)}
+.reveal{opacity:0;transform:translateY(17px);transition:opacity .6s ease,transform .6s ease}.reveal.is-visible{opacity:1;transform:none}
+@keyframes hero-enter{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes hero-light{to{transform:rotate(360deg)}}
+@keyframes hero-glow{to{opacity:.42;transform:scale(1.08)}}
+@keyframes core-glow{to{box-shadow:0 0 0 30px rgba(24,183,176,.1),0 0 110px rgba(245,180,0,.3)}}
+@keyframes chip-rise{from{opacity:0;translate:0 15px}to{opacity:1;translate:0 0}}
+@keyframes detail-enter{from{opacity:.6;translate:0 8px}to{opacity:1;translate:0 0}}
+@keyframes flow-dashes{to{stroke-dashoffset:-70}}
+@keyframes rotor-turn{to{transform:rotate(360deg)}}
+@keyframes art-glow{to{opacity:.58;filter:drop-shadow(0 0 12px var(--gold))}}
+@keyframes art-drift{to{opacity:.55;translate:0 -5px}}
+@keyframes input-pulse{50%{opacity:.3;transform:scale(1.5)}}
+@keyframes chart-enter{from{opacity:.4;transform:translateY(9px)}to{opacity:1;transform:none}}
+@media(max-width:780px){.hero{box-shadow:0 20px 45px rgba(6,27,49,.18)}.map-detail,.simulator{box-shadow:0 14px 32px rgba(6,27,49,.09)}.panel:hover,.kpi:hover,.finding:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero::before,.hero::after,.hero-copy>*,.sun-core,.float-chip,.plant-artwork *, .transformer-art *, .chart svg,.map-detail *, .reveal{animation:none!important;transition:none!important;transform:none!important;translate:none!important;filter:none!important}.reveal{opacity:1!important}.panel:hover,.finding:hover,.kpi:hover,.plant-pin:hover,.division-pin:hover,#map-transmission .map-pin:hover{transform:none!important}}
