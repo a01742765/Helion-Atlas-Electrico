@@ -389,9 +389,9 @@ function initNavigation(){const nav=$('#main-nav');const toggle=$('#menu-toggle'
 function initVisualMotion(){
  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
  if(reduce.matches||!('IntersectionObserver' in window))return;
- const targets=document.querySelectorAll('.section-heading,.family-card,.kpi,.finding,.panel,.map-layout');
+ const targets=document.querySelectorAll('.section-heading,.family-card,.kpi,.finding,.panel,.map-layout,.stat,.explain-box,.timeline-shell');
  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}),{threshold:.08,rootMargin:'0px 0px -25px 0px'});
  targets.forEach(el=>{el.classList.add('reveal');observer.observe(el)});
 }
-function init(){initVisualMotion();initNavigation();initResources();initClassifier();initReflection();renderAllCharts();initMaps();initSimTrans();initSimTransformer();initFindings();initTimeline();initSources();console.info('HELION Atlas · v1.6.1 · animaciones comprobables cargadas');}
+function init(){initNavigation();initResources();initClassifier();initReflection();renderAllCharts();initMaps();initSimTrans();initSimTransformer();initFindings();initTimeline();initSources();initVisualMotion();console.info('HELION Atlas · v1.7 · experiencia visual premium cargada');}
 init();
