@@ -68,3 +68,33 @@ body{background:linear-gradient(180deg,#fff 0%,#f5f8fb 50%,#fff 100%)}
 @keyframes chart-enter{from{opacity:.4;transform:translateY(9px)}to{opacity:1;transform:none}}
 @media(max-width:780px){.hero{box-shadow:0 20px 45px rgba(6,27,49,.18)}.map-detail,.simulator{box-shadow:0 14px 32px rgba(6,27,49,.09)}.panel:hover,.kpi:hover,.finding:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero::before,.hero::after,.hero-copy>*,.sun-core,.float-chip,.plant-artwork *, .transformer-art *, .chart svg,.map-detail *, .reveal{animation:none!important;transition:none!important;transform:none!important;translate:none!important;filter:none!important}.reveal{opacity:1!important}.panel:hover,.finding:hover,.kpi:hover,.plant-pin:hover,.division-pin:hover,#map-transmission .map-pin:hover{transform:none!important}}
+
+
+/* HELION v1.6.1 — gráficos rediseñados con movimiento realmente visible */
+.plant-artwork-pro{width:100%;height:auto;aspect-ratio:360/194;background:#071b30}
+.plant-artwork-pro .pa-label{font:800 9px Inter,Arial,sans-serif;letter-spacing:.9px;fill:#a9d0df}
+.plant-artwork-pro .pa-flow{animation:pa-moving-water 1.25s linear infinite;filter:drop-shadow(0 0 3px #3fe2f1)}
+.plant-artwork-pro .pa-wire{animation:pa-moving-water 1.2s linear infinite;filter:drop-shadow(0 0 3px #ffd159)}
+.plant-artwork-pro .pa-rotor{transform-box:fill-box;transform-origin:center;animation:pa-spin 3s linear infinite}
+.plant-artwork-pro .pa-sun{animation:pa-breathe 2.3s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+.plant-artwork-pro .pa-rays{animation:pa-breathe 2.3s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+.plant-artwork-pro .pa-steam{animation:pa-steam-rise 2.2s ease-in-out infinite alternate}
+.plant-artwork-pro .pa-spark,.plant-artwork-pro .pa-beacon{animation:pa-beacon .9s infinite alternate}
+.plant-artwork-pro .pa-water-line{animation:pa-moving-water 4s linear infinite;stroke-dasharray:18 4}
+.plant-artwork-pro .pa-flame{transform-box:fill-box;transform-origin:center bottom;animation:pa-fire .45s ease-in-out infinite alternate}
+.plant-artwork-pro .pa-sweep{animation:pa-scan 2.8s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+.transformer-drawing{padding:0;overflow:hidden;border:1px solid #245d73;box-shadow:0 18px 42px rgba(6,27,49,.18);background:#071a2f}
+.transformer-drawing .transformer-pro{width:100%;height:auto;max-height:none;display:block}
+.transformer-pro .transformer-flux{animation:tf-loop var(--flux-duration,1.5s) linear infinite;filter:drop-shadow(0 0 4px rgba(245,180,0,.85))}
+.transformer-pro .tf-energy-in{animation:tf-loop .9s linear infinite;filter:drop-shadow(0 0 4px #18b7b0)}
+.transformer-pro .tf-energy-out{animation:tf-loop 1.15s linear infinite;filter:drop-shadow(0 0 4px #f5b400)}
+.transformer-pro .tf-node{animation:pa-beacon .8s ease-in-out infinite alternate}
+@keyframes pa-moving-water{to{stroke-dashoffset:-74}}
+@keyframes pa-spin{to{transform:rotate(360deg)}}
+@keyframes pa-breathe{to{opacity:.72;transform:scale(1.09);filter:drop-shadow(0 0 7px #ffcb50)}}
+@keyframes pa-steam-rise{to{transform:translateY(-8px);opacity:.35}}
+@keyframes pa-beacon{to{opacity:.3;filter:drop-shadow(0 0 7px #f5b400)}}
+@keyframes pa-fire{to{transform:scale(1.08,.9);opacity:.8}}
+@keyframes pa-scan{to{transform:translateX(6px);opacity:.3}}
+@keyframes tf-loop{to{stroke-dashoffset:-84}}
+@media(prefers-reduced-motion:reduce){.plant-artwork-pro *,.transformer-pro *{animation:none!important;transition:none!important;transform:none!important;filter:none!important}}
