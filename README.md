@@ -40,6 +40,15 @@ El diseño mantiene la identidad visual original de HELION, utilizando azul prof
 | **v1.3 — Estadísticas** | Incorporación de los datos de generación por tecnología de 2022 y ampliación del filtro de comparación 2022–2024. |
 | **v1.4 — Geografía** | Investigación de referencias territoriales, corrección de posiciones aproximadas y actualización de los mapas de generación, transmisión y distribución. |
 | **v1.5 — Validación técnica** | Auditoría documental de datos, correcciones de capacidades y unidades, precisión de fuentes y actualización de explicaciones técnicas e históricas. |
+| **v1.6 — Experiencia visual** | Esquemas eléctricos animados, mejor respuesta visual de mapas y gráficas, y transiciones accesibles respetando el movimiento reducido. |
+| **v1.7 — Experiencia visual premium** | Mayor profundidad y consistencia de portada, tarjetas, mapas, navegación y gráficas, con transiciones que respetan el movimiento reducido. |
+| **v1.8 — Atlas inmersivo** | Portada de pantalla casi completa, escenas fotográficas por módulo y fichas de mapas con imágenes grandes y transiciones. |
+
+La versión 1.6 se preparó en la rama `feature/helion-visual-v1.6` para revisión. Consulta la [comparación visual](docs/COMPARACION_VISUAL_V1_6.md) y la [guía de revisión y pruebas](docs/REVISION_V1_6.md).
+
+La versión 1.7 se desarrolla en `feature/helion-visual-v1.7`; consulta la [comparación con v1.6](docs/COMPARACION_VISUAL_V1_7.md), el [reporte de pruebas](docs/REPORTE_PRUEBAS_V1_7.md) y la [guía de revisión](docs/REVISION_V1_7.md). Esta versión no se ha publicado.
+
+La versión 1.8 está preparada para revisión local y publicación manual. Consulta [cambios](docs/CAMBIOS_V1_8.md), [comparación visual](docs/COMPARACION_VISUAL_V1_8.md), [pruebas](docs/REPORTE_PRUEBAS_V1_8.md), [créditos de fotografías](docs/FOTOGRAFIAS_V1_8.md) y [publicación manual](docs/PUBLICACION_MANUAL_V1_8.md).
 
 ## Metodología de desarrollo
 

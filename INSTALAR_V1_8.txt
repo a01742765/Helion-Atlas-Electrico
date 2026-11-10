@@ -1,0 +1,6 @@
+HELION v1.8 integrado (base v1.6.1 + v1.7 + v1.8).
+1. Descomprimir.
+2. Subir a GitHub el contenido INTERIOR de este ZIP, con index.html en la raiz.
+3. Verificar carpetas css/, js/ y assets/photography/ y docs/.
+4. Commit y esperar Pages. Refrescar con Ctrl+F5.
+No borrar js/data.js, js/evidence.js ni los assets antiguos.

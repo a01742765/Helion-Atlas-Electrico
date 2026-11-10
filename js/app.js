@@ -127,7 +127,11 @@ function chartMap(id,items,type,onSelect){
  });
  set(0);
 }
+function helionImage(name,label){return `<figure class="detail-photo"><img src="assets/photography/${name}.webp" alt="${label}" loading="lazy" decoding="async"><figcaption>Imagen ilustrativa de la categoría; no representa la ubicación del marcador.</figcaption></figure>`;}
+function pulseDetail(el){if(!el.classList)return;el.classList.remove('detail-arrive');void el.offsetWidth;el.classList.add('detail-arrive');}
 function initDivisionMap(){
+ const helionImage=(name,label)=>`<figure class="detail-photo"><img src="assets/photography/${name}.webp" alt="${label}" loading="lazy" decoding="async"><figcaption>Imagen ilustrativa de la categoría; no representa la ubicación del marcador.</figcaption></figure>`;
+ const pulseDetail=el=>{if(!el.classList)return;el.classList.remove('detail-arrive');void el.offsetWidth;el.classList.add('detail-arrive');};
  const el=$('#map-distribution'), detail=$('#division-detail');
  // Cada pin representa una referencia territorial; Valle de México agrupa tres.
  const markers=[];
@@ -174,14 +178,14 @@ function initDivisionMap(){
      pin.setAttribute('aria-pressed',String(isActive));
    });
    const related=d.cluster?divisionPoints.map((p,j)=>({...p,i:j})).filter(p=>p.cluster===d.cluster):[];
-   detail.innerHTML=`<span class="overline">DIVISIÓN CFE · ${String(i+1).padStart(2,'0')} DE 16</span>
+   detail.innerHTML=`${helionImage('distribution','Vista nocturna real de Ciudad de México desde el espacio')}<span class="overline">DIVISIÓN CFE · ${String(i+1).padStart(2,'0')} DE 16</span>
     <h3>${escapeHtml(d.name)}</h3>
     <p><strong>${escapeHtml(d.sector)}</strong> · ${escapeHtml(d.scope)}</p>
     ${related.length?`<div class="division-subset"><span>Valle de México:</span>${related.map(p=>`<button type="button" data-detail-division="${p.i}" class="${p.i===active?'active':''}">${escapeHtml(p.name.replace('Valle de México ',''))}</button>`).join('')}</div>`:''}
     <dl><div><dt>Alcance nacional de CFE Distribución</dt><dd>16 divisiones · 150 zonas</dd></div><div><dt>Extensión de las redes, 2024</dt><dd>≈901 mil km</dd></div></dl>
     <p class="division-detail-caution">Las cifras anteriores son de alcance nacional; no son datos particulares de ${escapeHtml(d.name)}. El punto es una ciudad de referencia, no la sede ni el polígono de la división.</p>
     <a class="source-link" href="https://www.cfe.gob.mx/distribucion/cumplimiento/Documents/PAM%20RGD%202024-2038%20VF.pdf" target="_blank" rel="noopener noreferrer">CFE Distribución · PAM RGD 2024–2038 · Figura III.1, p. 7; ordinal PDF no disponible ↗</a><br>
-    ${sourceLink({doc:'cfe24',page:95,dataYear:2024,unit:'divisiones / zonas / km',scope:'Nacional CFE Distribución'})}`;
+    ${sourceLink({doc:'cfe24',page:95,dataYear:2024,unit:'divisiones / zonas / km',scope:'Nacional CFE Distribución'})}`;pulseDetail(detail);
    if(focus)detail.focus({preventScroll:true});
  }
  el.addEventListener('click',ev=>{
@@ -236,6 +240,8 @@ function plantArtwork(kind){
  return `<svg class="plant-artwork plant-artwork-pro" viewBox="0 0 360 194" role="img" aria-label="Esquema didáctico en movimiento de ${escapeHtml(title)}; representación ilustrativa, no de una central real">${defs}${background}${drawing}<rect x="8" y="27" width="190" height="23" rx="6" fill="#173d5e" stroke="#346480"/><text x="17" y="42" font-size="10" font-weight="800" fill="#eaf6fc">${title}</text></svg>`;
 }
 function initGenerationMap(){
+ const helionImage=(name,label)=>`<figure class="detail-photo"><img src="assets/photography/${name}.webp" alt="${label}" loading="lazy" decoding="async"><figcaption>Imagen ilustrativa de la tecnología; no representa la central seleccionada.</figcaption></figure>`;
+ const pulseDetail=el=>{if(!el.classList)return;el.classList.remove('detail-arrive');void el.offsetWidth;el.classList.add('detail-arrive');};
  const el=$('#map-generation'),filter=$('#plant-filter'),detail=$('#plant-detail');
  const technologies=[...new Set(plants.map(p=>p.technology))];
  filter.innerHTML='<option value="all">Todas las tecnologías</option>'+technologies.map(t=>`<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`).join('');
@@ -254,14 +260,14 @@ function initGenerationMap(){
  }
  function renderDetail(p){
   const kind=plantTechnology(p.technology);
-  detail.innerHTML=`<div class="plant-detail-art" data-technology="${kind}">${plantArtwork(kind)}<span>ESQUEMA DE TECNOLOGÍA · NO ES FOTO DE LA CENTRAL</span></div>
+  detail.innerHTML=`${helionImage(({nuclear:'nuclear',hydro:'hydro',solar:'solar',thermal:'thermal',wind:'wind'})[kind]||'thermal','Fotografía real ilustrativa de tecnología '+escapeHtml(p.technology))}<div class="plant-detail-art" data-technology="${kind}">${plantArtwork(kind)}<span>ESQUEMA DE TECNOLOGÍA · NO ES FOTO DE LA CENTRAL</span></div>
   <div class="plant-type"><span class="plant-type-icon" data-technology="${kind}">${plantGlyph(kind,23)}</span><span>${escapeHtml(p.technology)}</span></div>
   <span class="overline">CENTRAL DOCUMENTADA · ${escapeHtml(p.state)}</span><h3>${escapeHtml(p.name)}</h3>
   <div class="plant-detail-kpi"><strong>${es(p.mw,p.mw%1?1:0)} <small>MW</small></strong><span>${escapeHtml(p.capacityBasis)}<br>Año del dato: ${p.year}</span></div>
   <dl><div><dt>Localidad de referencia</dt><dd>${escapeHtml(p.loc)}</dd></div><div><dt>Ubicación del marcador</dt><dd>Ubicación municipal/regional aproximada; NO es un punto exacto de la central.</dd></div></dl>
   <p class="note light">${escapeHtml(p.capacityNote)}</p>${sourceLink(p.source)}
   <p><strong>Operación documentada:</strong> ${escapeHtml(p.operation)}. No acredita disponibilidad instantánea de todas las unidades.</p>${sourceLink(p.operationSource)}
-  <p><strong>Posición exacta:</strong> ${escapeHtml(p.geoStatus)}. La fuente municipal no valida el par latitud/longitud.</p>${sourceLink(p.territorySource)}`;
+  <p><strong>Posición exacta:</strong> ${escapeHtml(p.geoStatus)}. La fuente municipal no valida el par latitud/longitud.</p>${sourceLink(p.territorySource)}`;pulseDetail(detail);
  }
  function choose(id,focus=false){
   const p=visible.find(x=>x.id===id);if(!p)return;
@@ -319,7 +325,7 @@ function initGenerationMap(){
 }
 function initMaps(){
  initGenerationMap();
- chartMap('map-transmission',systems,'transmission',s=>{$('#system-detail').innerHTML=`<span class="overline">CENACE · REFERENCIA TERRITORIAL</span><h3>${escapeHtml(s.name)}</h3><p>${escapeHtml(s.detail)}</p><dl><div><dt>Estado</dt><dd>${escapeHtml(s.status)}</dd></div><div><dt>Ciudad usada para situar el marcador</dt><dd>${escapeHtml(s.city)}</dd></div><div><dt>Alcance cartográfico</dt><dd>Referencia urbana aproximada; precisión puntual pendiente. No describe límites, sedes, subestaciones ni conexiones reales. Corte estadístico 2024. Las diez gerencias de CFE Transmisión son otra estructura.</dd></div></dl><a class="source-link" href="https://www.cenace.gob.mx/Docs/10_PLANEACION/DiagramasUnifilares/Mod%20Gral%20Planeaci%C3%B3n%202020-2025%20Diagramas%20Unifilares%20RNT%20y%20RGD%20del%20MEM.pdf" target="_blank" rel="noopener noreferrer">CENACE · Planeación 2020–2025; no prueba puesta en operación ↗</a><p class="note">Clasificación al corte 2024: <a href="https://www.cne.gob.mx/Electricidad%20CNE/Codigo%20de%20red/Anexo%20Acuerdo%20RCSEN2024%20R00.pdf#page=5" target="_blank" rel="noopener noreferrer">CNE, Confiabilidad SEN 2024, p.5/PDF5</a>.</p>`;});
+ chartMap('map-transmission',systems,'transmission',s=>{$('#system-detail').innerHTML=`${helionImage('transmission','Líneas eléctricas reales en México')}<span class="overline">CENACE · REFERENCIA TERRITORIAL</span><h3>${escapeHtml(s.name)}</h3><p>${escapeHtml(s.detail)}</p><dl><div><dt>Estado</dt><dd>${escapeHtml(s.status)}</dd></div><div><dt>Ciudad usada para situar el marcador</dt><dd>${escapeHtml(s.city)}</dd></div><div><dt>Alcance cartográfico</dt><dd>Referencia urbana aproximada; precisión puntual pendiente. No describe límites, sedes, subestaciones ni conexiones reales. Corte estadístico 2024. Las diez gerencias de CFE Transmisión son otra estructura.</dd></div></dl><a class="source-link" href="https://www.cenace.gob.mx/Docs/10_PLANEACION/DiagramasUnifilares/Mod%20Gral%20Planeaci%C3%B3n%202020-2025%20Diagramas%20Unifilares%20RNT%20y%20RGD%20del%20MEM.pdf" target="_blank" rel="noopener noreferrer">CENACE · Planeación 2020–2025; no prueba puesta en operación ↗</a><p class="note">Clasificación al corte 2024: <a href="https://www.cne.gob.mx/Electricidad%20CNE/Codigo%20de%20red/Anexo%20Acuerdo%20RCSEN2024%20R00.pdf#page=5" target="_blank" rel="noopener noreferrer">CNE, Confiabilidad SEN 2024, p.5/PDF5</a>.</p>`;pulseDetail($('#system-detail'));});
  initDivisionMap();
 }
 function initSimTrans(){const input=['p-mw','v-kv','r-ohm','p-factor'].map(id=>document.getElementById(id));
@@ -389,9 +395,9 @@ function initNavigation(){const nav=$('#main-nav');const toggle=$('#menu-toggle'
 function initVisualMotion(){
  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
  if(reduce.matches||!('IntersectionObserver' in window))return;
- const targets=document.querySelectorAll('.section-heading,.family-card,.kpi,.finding,.panel,.map-layout,.stat,.explain-box,.timeline-shell');
+ const targets=document.querySelectorAll('.section-heading,.chapter-scene,.family-card,.kpi,.finding,.panel,.map-layout,.stat,.explain-box,.timeline-shell');
  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}),{threshold:.08,rootMargin:'0px 0px -25px 0px'});
  targets.forEach(el=>{el.classList.add('reveal');observer.observe(el)});
 }
-function init(){initNavigation();initResources();initClassifier();initReflection();renderAllCharts();initMaps();initSimTrans();initSimTransformer();initFindings();initTimeline();initSources();initVisualMotion();console.info('HELION Atlas · v1.7 · experiencia visual premium cargada');}
+function init(){initNavigation();initResources();initClassifier();initReflection();renderAllCharts();initMaps();initSimTrans();initSimTransformer();initFindings();initTimeline();initSources();initVisualMotion();console.info('HELION Atlas · v1.8 · experiencia inmersiva cargada');}
 init();
